@@ -9,8 +9,19 @@ body {
 }
 
 .board {
-    display: flex;
+    display: grid;
+    grid-template-areas: "todo in-progress done";
     gap: 20px;
+}
+
+#todo{
+    grid-area: todo;
+}
+#in-progress{
+    grid-area: in-progress;
+}
+#done{
+    grid-area: done;
 }
 
 .column {
@@ -58,4 +69,18 @@ body {
 
 .add-card button:hover {
     background-color: #0056b3;
+}
+
+.line-through {
+    text-decoration: line-through;
+}
+
+@media screen and (max-width: 768px) {
+    .board {
+        display: grid;
+        grid-template-areas: "todo"
+                             "in-progress"
+                             "done";
+        gap: 20px;
+    }
 }
