@@ -55,14 +55,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 function showCards() {
     const stringKanban = localStorage.getItem("kanban");
+    if (!stringKanban) {
+        return;
+    }
     const stringJSON = JSON.parse(stringKanban);
-
     const columns = document.querySelectorAll('.column');
-    //d55    let boardState = {};
 
     columns.forEach(column => {
         const columnId = column.id;
-        const columnlength = stringJSON[columnId].length
         stringJSON[columnId].forEach(cardText => {
             addCard(columnId, cardText, false);
         });
@@ -70,8 +70,6 @@ function showCards() {
 }
 
 function addCard(columnId, cardText, save) {
-    //const input = document.getElementById(`new-card-${columnId}`);
-    //const cardText = input.value;
     if (cardText) {
         const column = document.getElementById(columnId);
         const newCard = document.createElement('div');
@@ -106,7 +104,6 @@ function saveCards() {
         });
         boardState[column.id] = cardTexts;
     });
-    console.log("boardState", JSON.stringify(boardState));
     /*
     fetch('/saveBoard', {
         method: 'POST',
