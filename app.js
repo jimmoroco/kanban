@@ -35,19 +35,24 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (event.target.className == "column") {
             event.target.style.background = "";
             dragged.parentNode.removeChild(dragged);
+            if (event.target.id == 'done') {
+                dragged.classList.add('line-through');
+            }
+            else {
+                dragged.classList.remove('line-through');
+            }
             event.target.appendChild(dragged);
             saveCards();
         }
     }, false);
 
-    // Añadir detección de tecla "Enter" para las cajas de texto
     document.querySelectorAll('.add-card input').forEach(input => {
         input.addEventListener('keypress', function (event) {
             if (event.key === 'Enter') {
                 const cardText = input.value;
                 const columnId = input.id.split('new-card-')[1]
                 addCard(columnId, cardText, true);
-                input.value = ''; // Clear the input field
+                input.value = '';
             }
         });
     });
@@ -73,7 +78,13 @@ function addCard(columnId, cardText, save) {
     if (cardText) {
         const column = document.getElementById(columnId);
         const newCard = document.createElement('div');
-        newCard.className = 'card';
+        newCard.classList.add('card');
+        if (columnId == 'done') {
+            newCard.classList.add('line-through');
+        }
+        else {
+            newCard.classList.remove('line-through');
+        }
         newCard.draggable = true;
         newCard.textContent = cardText;
 
