@@ -14,13 +14,15 @@ body {
     gap: 20px;
 }
 
-#todo{
+#todo {
     grid-area: todo;
 }
-#in-progress{
+
+#in-progress {
     grid-area: in-progress;
 }
-#done{
+
+#done {
     grid-area: done;
 }
 
@@ -75,12 +77,21 @@ body {
     text-decoration: line-through;
 }
 
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    color: black;
+    text-align: center;
+}
+
 @media screen and (max-width: 768px) {
     .board {
         display: grid;
         grid-template-areas: "todo"
-                             "in-progress"
-                             "done";
+            "in-progress"
+            "done";
         gap: 20px;
     }
 }
