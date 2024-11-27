@@ -74,6 +74,14 @@ function showCards() {
     });
 }
 
+function addCardButton(button) {
+    const parentElement = button.parentElement;
+    const inputText = parentElement.firstElementChild;
+    const cardText = inputText.value;
+    const columnId = inputText.id.split('new-card-')[1]
+    addCard(columnId, cardText, true);
+}
+
 function addCard(columnId, cardText, save) {
     if (cardText) {
         const column = document.getElementById(columnId);
